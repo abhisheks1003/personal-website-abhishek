@@ -33,15 +33,15 @@ export default async function ProjectDetailPage({ params }: PageProps) {
   if (!project) notFound();
 
   return (
-    <article className="px-6 py-20">
-      <div className="mx-auto max-w-3xl">
+    <article className="px-6 py-24 md:py-32">
+      <div className="mx-auto max-w-4xl">
         {/* Back link */}
         <Link
           href="/projects"
-          className="mb-8 inline-flex items-center gap-1 text-sm font-medium text-secondary transition-colors hover:text-secondary/80"
+          className="mb-10 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-secondary transition-colors hover:text-secondary/80"
         >
           <svg
-            className="h-4 w-4"
+            className="h-3.5 w-3.5"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -58,13 +58,16 @@ export default async function ProjectDetailPage({ params }: PageProps) {
         </Link>
 
         {/* Header */}
-        <div className="mb-8">
-          <div className="mb-4 flex flex-wrap items-center gap-3">
-            <h1 className="text-4xl font-bold text-neutral-dark">
+        <div className="mb-10">
+          <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-secondary">
+            Project
+          </p>
+          <div className="mb-5 flex flex-wrap items-center gap-4">
+            <h1 className="font-serif text-4xl font-bold text-neutral-dark md:text-5xl">
               {project.title}
             </h1>
             <span
-              className={`rounded-full px-3 py-1 text-xs font-semibold ${statusColors[project.status]}`}
+              className={`rounded-full px-3 py-1 text-[10px] font-semibold uppercase tracking-wider ${statusColors[project.status]}`}
             >
               {project.status}
             </span>
@@ -73,7 +76,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
             {project.stack.map((tag) => (
               <span
                 key={tag}
-                className="rounded-full border border-accent/40 bg-accent/10 px-3 py-1 text-xs font-medium text-gray-700"
+                className="rounded-full bg-gray-100 px-3 py-1 text-[11px] font-medium text-gray-600"
               >
                 {tag}
               </span>
@@ -82,13 +85,13 @@ export default async function ProjectDetailPage({ params }: PageProps) {
         </div>
 
         {/* Links */}
-        <div className="mb-10 flex flex-wrap gap-4">
+        <div className="mb-14 flex flex-wrap gap-4">
           {project.githubUrl && (
             <a
               href={project.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-lg border-2 border-secondary px-5 py-2.5 text-sm font-semibold text-secondary transition-colors hover:bg-secondary hover:text-white"
+              className="inline-flex items-center gap-2 rounded-full border-2 border-neutral-dark px-6 py-3 text-xs font-semibold uppercase tracking-widest text-neutral-dark transition-colors hover:bg-neutral-dark hover:text-white"
             >
               <svg
                 className="h-4 w-4"
@@ -106,7 +109,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
               href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-primary/90"
+              className="inline-flex items-center gap-2 rounded-full bg-neutral-dark px-6 py-3 text-xs font-semibold uppercase tracking-widest text-white transition-colors hover:bg-gray-700"
             >
               <svg
                 className="h-4 w-4"
@@ -127,9 +130,11 @@ export default async function ProjectDetailPage({ params }: PageProps) {
           )}
         </div>
 
+        <hr className="divider mb-14" />
+
         {/* Description */}
-        <div className="mb-10">
-          <h2 className="mb-3 text-2xl font-bold text-neutral-dark">
+        <div className="mb-14">
+          <h2 className="mb-4 font-serif text-2xl font-bold text-neutral-dark">
             About This Project
           </h2>
           <p className="leading-relaxed text-gray-600">
@@ -139,15 +144,15 @@ export default async function ProjectDetailPage({ params }: PageProps) {
 
         {/* Screenshots placeholder */}
         {project.screenshots.length > 0 && (
-          <div className="mb-10">
-            <h2 className="mb-3 text-2xl font-bold text-neutral-dark">
+          <div className="mb-14">
+            <h2 className="mb-4 font-serif text-2xl font-bold text-neutral-dark">
               Screenshots
             </h2>
             <div className="grid gap-4 sm:grid-cols-2">
               {project.screenshots.map((src, i) => (
                 <div
                   key={i}
-                  className="overflow-hidden rounded-lg border border-gray-200"
+                  className="overflow-hidden rounded-2xl border border-gray-200"
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
@@ -162,8 +167,8 @@ export default async function ProjectDetailPage({ params }: PageProps) {
         )}
 
         {/* What I Learned */}
-        <div className="rounded-xl border border-accent/30 bg-accent/5 p-6">
-          <h2 className="mb-3 text-2xl font-bold text-neutral-dark">
+        <div className="rounded-2xl border border-accent/30 bg-accent/5 p-8">
+          <h2 className="mb-4 font-serif text-2xl font-bold text-neutral-dark">
             What I Learned
           </h2>
           <p className="leading-relaxed text-gray-600">{project.learned}</p>

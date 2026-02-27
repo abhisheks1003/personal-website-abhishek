@@ -15,29 +15,41 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <nav className="bg-secondary text-white" aria-label="Main navigation">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <Link href="/" className="text-xl font-bold tracking-tight">
+    <nav
+      className="border-b border-gray-200 bg-white"
+      aria-label="Main navigation"
+    >
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
+        {/* Logo — serif, elegant */}
+        <Link href="/" className="font-serif text-2xl font-bold text-neutral-dark">
           Abhishek
         </Link>
 
         {/* Desktop links */}
-        <ul className="hidden gap-8 md:flex">
-          {navLinks.map((link) => (
-            <li key={link.href}>
-              <Link
-                href={link.href}
-                className={`transition-colors hover:text-accent ${
-                  pathname === link.href
-                    ? "border-b-2 border-accent pb-0.5 text-accent"
-                    : ""
-                }`}
-              >
-                {link.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <div className="hidden items-center gap-10 md:flex">
+          <ul className="flex gap-10">
+            {navLinks.map((link) => (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  className={`text-xs font-semibold uppercase tracking-widest transition-colors hover:text-secondary ${
+                    pathname === link.href
+                      ? "text-secondary"
+                      : "text-gray-500"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <Link
+            href="#contact"
+            className="rounded-full bg-neutral-dark px-5 py-2 text-xs font-semibold uppercase tracking-widest text-white transition-colors hover:bg-gray-700"
+          >
+            Get in Touch
+          </Link>
+        </div>
 
         {/* Mobile hamburger */}
         <button
@@ -47,17 +59,17 @@ export default function Navbar() {
           aria-expanded={mobileOpen}
         >
           <span
-            className={`block h-0.5 w-6 bg-white transition-transform ${
+            className={`block h-0.5 w-6 bg-neutral-dark transition-transform ${
               mobileOpen ? "translate-y-2 rotate-45" : ""
             }`}
           />
           <span
-            className={`block h-0.5 w-6 bg-white transition-opacity ${
+            className={`block h-0.5 w-6 bg-neutral-dark transition-opacity ${
               mobileOpen ? "opacity-0" : ""
             }`}
           />
           <span
-            className={`block h-0.5 w-6 bg-white transition-transform ${
+            className={`block h-0.5 w-6 bg-neutral-dark transition-transform ${
               mobileOpen ? "-translate-y-2 -rotate-45" : ""
             }`}
           />
@@ -66,21 +78,32 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <ul className="flex flex-col gap-4 bg-secondary px-6 pb-6 md:hidden">
-          {navLinks.map((link) => (
-            <li key={link.href}>
-              <Link
-                href={link.href}
-                className={`block text-lg transition-colors hover:text-accent ${
-                  pathname === link.href ? "text-accent" : ""
-                }`}
-                onClick={() => setMobileOpen(false)}
-              >
-                {link.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <div className="border-t border-gray-200 bg-white px-6 pb-6 pt-4 md:hidden">
+          <ul className="flex flex-col gap-4">
+            {navLinks.map((link) => (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  className={`block text-sm font-semibold uppercase tracking-widest transition-colors hover:text-secondary ${
+                    pathname === link.href
+                      ? "text-secondary"
+                      : "text-gray-500"
+                  }`}
+                  onClick={() => setMobileOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <Link
+            href="#contact"
+            className="mt-4 inline-block rounded-full bg-neutral-dark px-5 py-2 text-xs font-semibold uppercase tracking-widest text-white"
+            onClick={() => setMobileOpen(false)}
+          >
+            Get in Touch
+          </Link>
+        </div>
       )}
     </nav>
   );
